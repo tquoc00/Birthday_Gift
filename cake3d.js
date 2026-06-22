@@ -203,9 +203,9 @@ window.initCake3D = function(addChatMessage, triggerConfetti, state) {
 
     document.getElementById('light-candle-btn').classList.add('hidden');
     document.getElementById('blow-candle-btn').classList.remove('hidden');
-    document.getElementById('cake-instruction').textContent = "Make a wish and blow out the candle! 💨";
-    addChatMessage("System", "Candle lit! 🔥", true);
-    addChatMessage("Boyfriend", "Make a wish and blow it out! 🌬️");
+    document.getElementById('cake-instruction').textContent = "Hãy ước một điều và thổi tắt nến nhé! 💨";
+    addChatMessage("Hệ thống", "Nến đã được thắp! 🔥", true);
+    addChatMessage("Anh yêu", "Ước đi em rồi thổi tắt nến nào! 🌬️");
   };
 
   window.cake3D_blowCandle = function() {
@@ -217,11 +217,11 @@ window.initCake3D = function(addChatMessage, triggerConfetti, state) {
 
     document.getElementById('blow-candle-btn').classList.add('hidden');
     document.getElementById('cut-cake-btn').classList.remove('hidden');
-    document.getElementById('cake-instruction').textContent = "Candle blown! Now cut the cake! 🔪";
+    document.getElementById('cake-instruction').textContent = "Nến đã thổi tắt! Giờ hãy cắt bánh nhé! 🔪";
 
     triggerConfetti(viewport, 40, ['💖', '🌸', '✨', '🎀', '💝']);
-    addChatMessage("System", "Candle blown out! 💨", true);
-    addChatMessage("Boyfriend", "Hope your wish comes true! 🌟 Now cut the cake!");
+    addChatMessage("Hệ thống", "Đã thổi tắt nến! 💨", true);
+    addChatMessage("Anh yêu", "Hy vọng điều ước của em sẽ thành hiện thực! 🌟 Bây giờ hãy cắt bánh nào!");
   };
 
   window.cake3D_cutCake = function() {
@@ -244,11 +244,11 @@ window.initCake3D = function(addChatMessage, triggerConfetti, state) {
 
     document.getElementById('cut-cake-btn').classList.add('hidden');
     document.getElementById('explode-cake-btn').classList.remove('hidden');
-    document.getElementById('cake-instruction').textContent = "Cake cut into pieces! 🍰 Explode them!";
+    document.getElementById('cake-instruction').textContent = "Bánh đã cắt thành nhiều phần! 🍰 Thưởng thức thôi!";
 
     triggerConfetti(viewport, 25, ['🍓', '✨', '🍰']);
-    addChatMessage("System", "Cake sliced! 🍰", true);
-    addChatMessage("Boyfriend", "Beautiful slices! Hit Explode to see the magic! 🎉");
+    addChatMessage("Hệ thống", "Đã cắt bánh! 🍰", true);
+    addChatMessage("Anh yêu", "Những lát bánh thật đẹp! Nhấp Ăn Bánh để xem điều kỳ diệu! 🎉");
   };
 
   function createCakeSlice(index, total) {
@@ -346,10 +346,10 @@ window.initCake3D = function(addChatMessage, triggerConfetti, state) {
     const toVideoBtn = document.getElementById('to-video-btn');
     toVideoBtn.classList.remove('hidden');
     gsap.fromTo(toVideoBtn, { scale: 0 }, { scale: 1, duration: 0.5, delay: 0.5, ease: "back.out(1.5)" });
-    document.getElementById('cake-instruction').textContent = "Enjoy your cake! 🎂💖";
+    document.getElementById('cake-instruction').textContent = "Chúc em ngon miệng! 🎂💖";
 
     triggerConfetti(viewport, 50, ['💖', '🎂', '✨', '🎀', '🍓', '🧁']);
-    addChatMessage("Boyfriend", "Yum! Now watch the video! 🎬");
+    addChatMessage("Anh yêu", "Ngon quá! Giờ thì xem video thôi nào! 🎬");
   };
 
   window.cake3D_reset = function() {
@@ -362,7 +362,7 @@ window.initCake3D = function(addChatMessage, triggerConfetti, state) {
     ['light-candle-btn'].forEach(id => document.getElementById(id)?.classList.remove('hidden'));
     ['blow-candle-btn', 'cut-cake-btn', 'explode-cake-btn', 'to-video-btn'].forEach(id =>
       document.getElementById(id)?.classList.add('hidden'));
-    document.getElementById('cake-instruction').textContent = "Drag to rotate the cake 360° • Click \"Light Candle\" to start! 🕯️";
+    document.getElementById('cake-instruction').textContent = "Kéo để xoay bánh 360° • Bấm \"Thắp Nến\" để bắt đầu! 🕯️";
   };
 
   function onResize() {

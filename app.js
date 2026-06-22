@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- STATE ---
   const state = {
-    wishes: "They say home is a place, but with you, I've realized that home is actually a person. Thank you for being my safe harbor and for loving me in ways I never knew I needed. Looking at the calendar, June 18th is easily my favorite day because it's the day you were born to change my world. I hope your day is as beautiful as the soul you have. I love you, today and for all the years to come. Happy Birthday Love.",
+    wishes: "Người ta nói nhà là một địa điểm, nhưng bên em, anh nhận ra nhà chính là một con người. Cảm ơn em vì đã là bến đỗ bình yên của anh và yêu anh theo những cách anh chưa từng nghĩ mình cần đến. Nhìn vào tờ lịch kia, ngày 18 tháng 6 là ngày anh thích nhất trong năm, bởi đó là ngày em được sinh ra để thay đổi cả thế giới của anh. Hy vọng ngày sinh nhật của em sẽ đẹp đẽ như chính tâm hồn em vậy. Anh yêu em, hôm nay và mãi mãi những năm tháng sau này. Chúc mừng sinh nhật em yêu.",
     activePage: 'page-welcome',
     isPlayingMusic: false,
     synthTimer: null,
@@ -175,11 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         },
         'onError': (event) => {
-          let errorMsg = "Could not play this video. It might be restricted or deleted.";
-          if (event.data === 2) errorMsg = "Invalid YouTube video ID.";
-          if (event.data === 100 || event.data === 150) errorMsg = "This video is restricted from playing in embedded players.";
+          let errorMsg = "Không thể phát video này. Có thể video bị hạn chế hoặc đã bị xóa.";
+          if (event.data === 2) errorMsg = "ID video YouTube không hợp lệ.";
+          if (event.data === 100 || event.data === 150) errorMsg = "Video này bị hạn chế phát trên trình phát nhúng.";
           
-          addChatMessage("System", `⚠️ Error: ${errorMsg}`, true);
+          addChatMessage("Hệ thống", `⚠️ Lỗi: ${errorMsg}`, true);
           alert(errorMsg);
           switchToSynth();
         }
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   volumeSlider.value = state.volume * 100;
   if (state.musicSource === 'youtube' && state.currentYtVideoId) {
-    nowPlayingTitle.textContent = "Playing: YouTube Music 🎵";
+    nowPlayingTitle.textContent = "Đang phát: Nhạc YouTube 🎵";
   }
 
   function getYouTubeId(url) {
@@ -239,10 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
       ytPlayer.playVideo();
       state.isPlayingMusic = true;
       updatePlayerUI(true);
-      nowPlayingTitle.textContent = "Playing: YouTube Music 🎵";
-      addChatMessage("System", "Playing music from YouTube! 🎧", true);
+      nowPlayingTitle.textContent = "Đang phát: Nhạc YouTube 🎵";
+      addChatMessage("Hệ thống", "Đang phát nhạc từ YouTube! 🎧", true);
     } else {
-      addChatMessage("System", "Loading YouTube player... Please wait.", true);
+      addChatMessage("Hệ thống", "Đang tải trình phát YouTube... Vui lòng đợi.", true);
     }
   }
 
@@ -261,8 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch(e) {}
     }
     
-    nowPlayingTitle.textContent = "Playing: Sweet Synth 🎵";
-    addChatMessage("System", "Switched back to Sweet Synth melody. 🎶", true);
+    nowPlayingTitle.textContent = "Đang phát: Nhạc nền 🎵";
+    addChatMessage("Hệ thống", "Đã chuyển về nhạc nền mặc định. 🎶", true);
     
     toggleMusic(true);
   }
@@ -342,8 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('bday_yt_url', url);
       playYouTubeVideo(videoId);
     } else {
-      alert("Invalid YouTube URL! Please copy a valid link from your browser.");
-      addChatMessage("System", "⚠️ Invalid YouTube URL entered.", true);
+      alert("Đường dẫn YouTube không hợp lệ! Vui lòng sao chép lại liên kết.");
+      addChatMessage("Hệ thống", "⚠️ Nhập đường dẫn YouTube không hợp lệ.", true);
     }
   });
 
@@ -377,10 +377,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial messages
   setTimeout(() => {
-    addChatMessage("System", "Stream starting soon... 🌸", true);
+    addChatMessage("Hệ thống", "Luồng stream sắp bắt đầu... 🌸", true);
   }, 300);
   setTimeout(() => {
-    addChatMessage("Boyfriend", "Happy Birthday, my princess! I hope you like this stream setup I built for you. Click the envelope to open your present! 🎁");
+    addChatMessage("Anh yêu", "Chúc mừng sinh nhật công chúa của anh! Hy vọng em sẽ thích giao diện stream anh thiết kế riêng cho em. Hãy nhấp vào phong thư để mở quà nhé! 🎁");
   }, 1000);
 
   // Send message on input
@@ -389,21 +389,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!text) return;
     chatInputField.value = '';
     
-    addChatMessage("Princess", text);
+    addChatMessage("Công chúa", text);
 
     // BF cute responses
     const bfResponses = [
-      "Aww you are so sweet! 💕",
-      "You are the most beautiful girl in the world! 🌸",
-      "Sending you a million virtual kisses! 😘😘😘",
-      "My heart belongs to you forever! ❤️",
-      "Happy Birthday, sweetheart! 🎉",
-      "I'm so lucky to have you as my girl! 🎀"
+      "Ôi em ngọt ngào quá! 💕",
+      "Em là cô gái xinh đẹp nhất trên đời! 🌸",
+      "Gửi đến em triệu nụ hôn gió nè! 😘😘😘",
+      "Trái tim anh thuộc về em mãi mãi! ❤️",
+      "Chúc mừng sinh nhật em yêu! 🎉",
+      "Anh thật may mắn khi có em là người yêu! 🎀"
     ];
     
     setTimeout(() => {
       const resp = bfResponses[Math.floor(Math.random() * bfResponses.length)];
-      addChatMessage("Boyfriend", resp);
+      addChatMessage("Anh yêu", resp);
     }, 1200 + Math.random() * 800);
   }
 
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tab = document.querySelector(`.panel-tab[data-target="${pageId}"]`);
     if (tab && tab.classList.contains('locked')) {
       tab.classList.remove('locked');
-      addChatMessage("System", `[${tab.querySelector('span').textContent}] tab unlocked! 🔓`, true);
+      addChatMessage("Hệ thống", `Đã mở khóa phần [${tab.querySelector('span').textContent}]! 🔓`, true);
       
       // Elastic pop on unlock
       gsap.fromTo(tab, { scale: 0.8 }, { scale: 1, duration: 0.6, ease: "elastic.out(1.2, 0.4)" });
@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.target;
       if (tab.classList.contains('locked')) {
-        addChatMessage("System", "This panel is currently locked! Complete current activities to unlock. 🔒", true);
+        addChatMessage("Hệ thống", "Phần này hiện đang khóa! Hãy hoàn thành các thử thách trước đó để mở khóa nhé. 🔒", true);
         
         // Wiggle animation
         gsap.to(tab, { x: 5, duration: 0.1, yoyo: true, repeat: 3, onComplete: () => gsap.set(tab, { x: 0 }) });
@@ -505,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: "back.out(1.4)"
       });
       unlockTab('page-maze');
-      addChatMessage("Boyfriend", "Here is my birthday letter to you, my love! Check out the June calendar too. 🥰");
+      addChatMessage("Anh yêu", "Đây là thư chúc mừng sinh nhật anh viết cho em, người yêu của anh! Em nhớ xem cả tờ lịch tháng 6 nữa nhé. 🥰");
     } else if (pageId === 'page-maze') {
       initMazeGame();
       // Animate camera container & maze game card slide-in
@@ -516,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 0.8,
         ease: "back.out(1.2)"
       });
-      addChatMessage("Boyfriend", "Can you guide the avocado 🥑 to the strawberry 🍓? Drag it along the path! 💕");
+      addChatMessage("Anh yêu", "Em có thể dẫn quả bơ 🥑 đến quả dâu tây 🍓 không nào? Kéo em nó dọc theo đường đi nhé! 💕");
     } else if (pageId === 'page-memories') {
       // Animate collage & stamps slide-in
       gsap.from('.memories-collage-page, .scraps-layout-container', {
@@ -526,18 +526,18 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 0.8,
         ease: "power2.out"
       });
-      addChatMessage("Boyfriend", "Look at all these sweet photos of us! We have so many beautiful moments. Click 'Blow Candles!' when you're ready! 🍰");
+      addChatMessage("Anh yêu", "Nhìn lại những bức ảnh ngọt ngào của chúng mình nè! Chúng mình có thật nhiều kỷ niệm đẹp. Hãy bấm 'Thổi Nến Nào!' khi em đã sẵn sàng nhé! 🍰");
     } else if (pageId === 'page-cake') {
       resetCakeState();
       initCake3DIfNeeded();
       if (window.cake3D_resize) window.cake3D_resize();
       gsap.from('.cake-3d-viewport', { scale: 0.8, opacity: 0, duration: 0.8, ease: "back.out(1.2)" });
       gsap.from('.cake-action-bar', { y: 30, opacity: 0, duration: 0.6, delay: 0.3, ease: "power2.out" });
-      addChatMessage("Boyfriend", "I baked a 3D strawberry cake for you! 🎂 Drag to rotate it, then light the candle!");
+      addChatMessage("Anh yêu", "Anh tự tay làm chiếc bánh dâu tây 3D này cho em đó! 🎂 Kéo để xoay bánh, sau đó bấm thắp nến nhé!");
     } else if (pageId === 'page-video') {
       gsap.from('.video-frame', { scale: 0.8, rotation: -5, opacity: 0, duration: 0.8, ease: "back.out(1.5)" });
       gsap.from('#final-wish-letter', { y: 50, opacity: 0, duration: 0.8, delay: 0.4, ease: "power2.out" });
-      addChatMessage("Boyfriend", "Here is our stream highlight video! Or click 'Play Heart Show' for romantic visual patterns. Don't forget to send me a heart! 😘");
+      addChatMessage("Anh yêu", "Đây là video kỷ niệm của tụi mình! Hoặc em có thể bấm 'Chạy Hiệu Ứng Mưa Tim' để tạo cơn mưa tim lãng mạn. Đừng quên gửi tim cho anh nha! 😘");
     }
   }
 
@@ -550,16 +550,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!mainEnvelope.classList.contains('open')) {
       mainEnvelope.classList.add('open');
       toggleMusic(true); // Autoplay audio on envelope open interaction
-      addChatMessage("System", "Princess opened the secret envelope! 💌", true);
+      addChatMessage("Hệ thống", "Công chúa đã mở phong thư bí mật! 💌", true);
       setTimeout(() => {
-        addChatMessage("Boyfriend", "Yay! Go ahead and click Start to read my letter! 💕");
+        addChatMessage("Anh yêu", "Tuyệt quá! Hãy bấm Bắt đầu để đọc thư của anh nhé! 💕");
       }, 800);
     }
   });
 
   startBtn.addEventListener('click', () => {
     unlockTab('page-wishes');
-    addChatMessage("System", "Princess started the birthday adventure! 🚀", true);
+    addChatMessage("Hệ thống", "Công chúa đã bắt đầu chuyến phiêu lưu sinh nhật! 🚀", true);
     navigateTo('page-wishes');
   });
 
@@ -600,7 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
     state.wishes = wishesInput.value;
     wishesEditBox.classList.add('hidden');
     startTypingWishes();
-    addChatMessage("System", "Princess updated the wishes text. 📝", true);
+    addChatMessage("Hệ thống", "Công chúa đã cập nhật nội dung lời chúc. 📝", true);
   });
 
   // Photo uploading logic for all slots
@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Cute pulse scale on upload
           gsap.fromTo(slotContainer, { scale: 0.9 }, { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.3)" });
-          addChatMessage("System", `Princess uploaded a new photo. 📷`, true);
+          addChatMessage("Hệ thống", `Công chúa đã tải lên một ảnh mới. 📷`, true);
         };
         reader.readAsDataURL(file);
       }
@@ -643,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
     avocado.style.left = '12px';
     avocado.style.top = '12px';
     mazeCompleted = false;
-    statusMsg.innerText = "Drag 🥑 to 🍓!";
+    statusMsg.innerText = "Kéo 🥑 đến 🍓!";
     statusMsg.style.color = '#ffd166';
 
     // Drag events using pointer events for touch & mouse compatibility
@@ -678,14 +678,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dist < 24) {
         mazeCompleted = true;
         isDraggingAvocado = false;
-        statusMsg.innerText = "Adventure Completed! 💖";
+        statusMsg.innerText = "Hoàn thành thử thách! 💖";
         statusMsg.style.color = '#ffccd5';
         triggerConfetti(avocado, 15, ['🌸', '✨', '🎀', '🥑', '🍓']);
         
         // Soft animation
         gsap.to(avocado, { scale: 1.3, duration: 0.3, yoyo: true, repeat: 1 });
         unlockTab('page-memories');
-        addChatMessage("Boyfriend", "OMG you did it! 💖 You are so good at this! Now check out the memories tab!");
+        addChatMessage("Anh yêu", "Tuyệt quá em làm được rồi! 💖 Em thật thông minh! Giờ hãy xem tab kỷ niệm nhé!");
       }
     });
 
@@ -724,7 +724,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', () => {
         unlockTab(targetPage);
         navigateTo(targetPage);
-        addChatMessage("System", `Navigated to next page! ➡️`, true);
+        addChatMessage("Hệ thống", `Đã chuyển sang trang tiếp theo! ➡️`, true);
       });
     }
   });
@@ -936,7 +936,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Floating heart burst button
   sendHeartBtn.addEventListener('click', () => {
-    const phrases = ["Love You! 💖", "You are the best! 🌸", "Happy Birthday! 🎀", "Muah! 😘", "My Princess 👑"];
+    const phrases = ["Yêu anh nhiều! 💖", "Anh là tuyệt nhất! 🌸", "Cảm ơn anh! 🎀", "Moa moa! 😘", "Chụt chụt! 💝"];
     const phrase = phrases[Math.floor(Math.random() * phrases.length)];
     
     // Spawn floating words & hearts
@@ -945,9 +945,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scale button on click
     gsap.fromTo(sendHeartBtn, { scale: 0.9 }, { scale: 1.1, yoyo: true, repeat: 1, duration: 0.15 });
 
-    addChatMessage("System", "Princess sent a heart to Boyfriend! ❤️", true);
+    addChatMessage("Hệ thống", "Công chúa đã gửi tim cho Anh yêu! ❤️", true);
     setTimeout(() => {
-      addChatMessage("Boyfriend", "Aww thank you, my princess! I love you so much! 😘💕");
+      addChatMessage("Anh yêu", "Ôi cảm ơn công chúa của anh! Anh yêu em nhiều nhiều! 😘💕");
     }, 800);
   });
 
@@ -1010,7 +1010,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Reset 3D cake
       if (window.cake3D_reset) window.cake3D_reset();
 
-      addChatMessage("System", "Adventure restarted. 🔄", true);
+      addChatMessage("Hệ thống", "Đã đặt lại hành trình. 🔄", true);
       navigateTo('page-welcome');
     });
   }
