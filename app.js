@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
       p1: null,
       p2: null
     },
-    musicSource: 'synth', // 'synth' or 'youtube'
+    musicSource: 'youtube', // 'synth' or 'youtube'
     ytPlayerReady: false,
-    currentYtVideoId: null,
+    currentYtVideoId: '6_M7A6Xmim0',
     volume: 0.5
   };
 
@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (savedYtVideoId) {
     state.currentYtVideoId = savedYtVideoId;
-    state.musicSource = 'youtube';
   }
   if (savedMusicSource) {
     state.musicSource = savedMusicSource;
@@ -209,6 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Restore saved state into UI elements
   if (savedYtUrl) {
     ytUrlInput.value = savedYtUrl;
+  } else {
+    ytUrlInput.value = 'https://youtu.be/6_M7A6Xmim0?si=E1VjKy1zNAgpUAsD';
   }
   volumeSlider.value = state.volume * 100;
   if (state.musicSource === 'youtube' && state.currentYtVideoId) {
