@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- STATE ---
   const state = {
-    wishes: "Người ta nói nhà là một địa điểm, nhưng bên em, anh nhận ra nhà chính là một con người. Cảm ơn em vì đã là bến đỗ bình yên của anh và yêu anh theo những cách anh chưa từng nghĩ mình cần đến. Nhìn vào tờ lịch kia, ngày 18 tháng 6 là ngày anh thích nhất trong năm, bởi đó là ngày em được sinh ra để thay đổi cả thế giới của anh. Hy vọng ngày sinh nhật của em sẽ đẹp đẽ như chính tâm hồn em vậy. Anh yêu em, hôm nay và mãi mãi những năm tháng sau này. Chúc mừng sinh nhật em yêu.",
+    wishes: "Người ta nói nhà là một địa điểm, nhưng bên em, anh nhận ra nhà chính là một con người. Cảm ơn em vì đã là bến đỗ bình yên của anh và yêu anh theo những cách anh chưa từng nghĩ mình cần đến. Nhìn vào tờ lịch kia, ngày 29 tháng 6 là ngày anh thích nhất trong năm, bởi đó là ngày em được sinh ra để thay đổi cả thế giới của anh. Hy vọng ngày sinh nhật của em sẽ đẹp đẽ như chính tâm hồn em vậy. Anh yêu em, hôm nay và mãi mãi những năm tháng sau này. Chúc mừng sinh nhật em yêu.",
     activePage: 'page-welcome',
     isPlayingMusic: false,
     synthTimer: null,
@@ -152,7 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'fs': 0,
         'rel': 0,
         'showinfo': 0,
-        'modestbranding': 1
+        'modestbranding': 1,
+        'playsinline': 1
       },
       events: {
         'onReady': () => {
