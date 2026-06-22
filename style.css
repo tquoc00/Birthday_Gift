@@ -2389,6 +2389,28 @@ body {
     min-height: 500px;
   }
 
+  .face-cam-viewport {
+    height: auto;
+    min-height: 480px;
+    overflow: visible;
+  }
+
+  .page {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 480px;
+    display: none;
+    padding: 15px 10px 70px 10px;
+  }
+
+  .page.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
   .screen-two-columns {
     flex-direction: column;
     height: auto;
