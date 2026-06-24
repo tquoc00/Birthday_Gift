@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
       addChatMessage("Anh yêu", "Anh tự tay làm chiếc bánh dâu tây 3D này cho em đó! 🎂 Kéo để xoay bánh, sau đó bấm thắp nến nhé!");
     } else if (pageId === 'page-video') {
       gsap.from('.video-frame', { scale: 0.8, rotation: -5, opacity: 0, duration: 0.8, ease: "back.out(1.5)" });
-      gsap.from('#final-wish-letter', { y: 50, opacity: 0, duration: 0.8, delay: 0.4, ease: "power2.out" });
+      gsap.from('.final-actions', { y: 30, opacity: 0, duration: 0.8, delay: 0.4, ease: "power2.out" });
       addChatMessage("Anh yêu", "Đây là video kỷ niệm của tụi mình! Hoặc em có thể bấm 'Chạy Hiệu Ứng Mưa Tim' để tạo cơn mưa tim lãng mạn. Đừng quên gửi tim cho anh nha! 😘");
     }
   }
@@ -935,6 +935,63 @@ document.addEventListener('DOMContentLoaded', () => {
     videoEl.muted = !videoEl.muted;
     muteBtn.textContent = videoEl.muted ? '🔇' : '🔊';
   });
+
+  // Video zoom to fill / fit toggle
+  const zoomBtn = document.getElementById('video-zoom');
+  if (zoomBtn) {
+    zoomBtn.addEventListener('click', () => {
+      videoEl.classList.toggle('zoomed');
+      if (videoEl.classList.contains('zoomed')) {
+        zoomBtn.textContent = '🔍 Fill';
+        addChatMessage("Hệ thống", "Đã thu phóng video (Lấp đầy khung hình) 🔍", true);
+      } else {
+        zoomBtn.textContent = '🔍 Fit';
+        addChatMessage("Hệ thống", "Đã đặt video về tỷ lệ gốc 🔍", true);
+      }
+    });
+  }
+
+  // Double-click or double-tap video to toggle zoom (YouTube gesture)
+  videoEl.addEventListener('dblclick', () => {
+    if (zoomBtn) zoomBtn.click();
+  });
+
+  // Video fullscreen toggle
+  const fullscreenBtn = document.getElementById('video-fullscreen');
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (videoEl.requestFullscreen) {
+        videoEl.requestFullscreen();
+      } else if (videoEl.webkitRequestFullscreen) { // Safari on iOS / macOS
+        videoEl.webkitRequestFullscreen();
+      } else if (videoEl.msRequestFullscreen) {
+        videoEl.msRequestFullscreen();
+      }
+    });
+  }
+
+  // --- LETTER POPUP MODAL ---
+  const readLetterBtn = document.getElementById('read-letter-btn');
+  const letterPopup = document.getElementById('letter-popup');
+  const letterPopupClose = document.getElementById('letter-popup-close');
+
+  if (readLetterBtn && letterPopup && letterPopupClose) {
+    readLetterBtn.addEventListener('click', () => {
+      letterPopup.classList.add('active');
+      triggerConfetti(readLetterBtn, 15, ['🌸', '💖', '✨', '🎀']);
+      addChatMessage("Hệ thống", "Công chúa đang đọc thư tay của Anh yêu! 💌", true);
+    });
+
+    letterPopupClose.addEventListener('click', () => {
+      letterPopup.classList.remove('active');
+    });
+
+    letterPopup.addEventListener('click', (e) => {
+      if (e.target === letterPopup) {
+        letterPopup.classList.remove('active');
+      }
+    });
+  }
 
   // Floating heart burst button
   sendHeartBtn.addEventListener('click', () => {

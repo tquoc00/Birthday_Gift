@@ -23,6 +23,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hidden {
+  display: none !important;
 }
 
 body {
@@ -707,8 +712,10 @@ body {
   padding: 20px;
   z-index: 15;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  transform: translateY(0);
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(0) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -749,9 +756,11 @@ body {
 }
 
 .envelope.open .letter {
-  -webkit-transform: translateY(-130px);
-  transform: translateY(-130px);
+  -webkit-transform: translateY(-130px) scale(1);
+  transform: translateY(-130px) scale(1);
   z-index: 25;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* =======================================
@@ -1900,8 +1909,8 @@ body {
 /* Retro Cute TV Frame */
 .video-frame {
   position: relative;
-  width: 90%;
-  max-width: 480px;
+  width: 100%;
+  max-width: 640px;
   background-color: var(--white);
   border: 3px solid #4a2834;
   border-radius: 25px;
@@ -1941,6 +1950,11 @@ body {
 .custom-video {
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  transition: object-fit 0.25s ease;
+}
+
+.custom-video.zoomed {
   object-fit: cover;
 }
 
@@ -2065,8 +2079,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  opacity: 0;
-  transform: translateY(20px);
 }
 
 .final-letter-decor {
@@ -2366,23 +2378,23 @@ body {
 
 .video-screen-layout {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  gap: 20px;
+  gap: 15px;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 15px;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .video-screen-layout .video-container-wrapper {
-  width: 55%;
-}
-
-.video-screen-layout .letter-container-wrapper {
-  width: 42%;
+  width: 100%;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 15px;
 }
 
@@ -2392,8 +2404,13 @@ body {
 @media (max-width: 950px) {
   body {
     padding: 10px;
+    padding-bottom: calc(75px + env(safe-area-inset-bottom, 12px)) !important;
     height: auto;
     overflow-y: auto;
+  }
+
+  .bg-decorations {
+    display: none !important; /* Performance boost on mobile Safari */
   }
 
   .stream-dashboard {
@@ -2402,7 +2419,7 @@ body {
   }
 
   .dashboard-body {
-    flex-direction: column;
+    flex-direction: column-reverse; /* Put main content on top, chat on bottom */
   }
 
   .chat-box-frame {
@@ -2462,9 +2479,58 @@ body {
     height: auto;
   }
 
-  .video-screen-layout .video-container-wrapper,
-  .video-screen-layout .letter-container-wrapper {
+  .video-screen-layout .video-container-wrapper {
     width: 100%;
+  }
+
+  /* Fixed swipeable navigation bar for app-like UX */
+  .panels-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 245, 247, 0.95);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-top: 3px solid #2c1a21;
+    margin-top: 0;
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 12px)) 10px;
+    z-index: 999;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 -4px 15px rgba(74, 40, 52, 0.15);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .panels-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Prevent iOS Safari keyboard zoom on focus */
+  .chat-input-area input {
+    font-size: 16px !important;
+  }
+
+  #maze-board-svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Extra small mobile device adjustments */
+@media (max-width: 375px) {
+  .envelope-wrapper {
+    transform: scale(0.85);
+    margin: -15px 0;
+  }
+  .heart-collage-container {
+    transform: scale(0.85);
+    margin: -10px 0;
   }
 }
 
@@ -2921,5 +2987,98 @@ body {
     padding: 6px 12px;
     font-size: 0.8rem;
   }
+}
+
+/* =======================================
+   LETTER POPUP MODAL STYLES
+   ======================================= */
+.letter-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(74, 40, 52, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.letter-popup-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.letter-popup-card {
+  position: relative;
+  width: 90%;
+  max-width: 480px;
+  background: rgba(255, 245, 247, 0.98);
+  border: 5px solid white;
+  outline: 3px solid #2c1a21;
+  border-radius: 25px;
+  box-shadow: var(--shadow-medium);
+  padding: 35px 20px 20px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transform: translateY(-50px) scale(0.85);
+  transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.letter-popup-overlay.active .letter-popup-card {
+  transform: translateY(0) scale(1);
+}
+
+.letter-popup-card .hk-ears .hk-ear-l {
+  left: 15%;
+}
+.letter-popup-card .hk-ears .hk-ear-r {
+  right: 15%;
+}
+.letter-popup-card .hk-ears .hk-bow-svg {
+  right: 8%;
+}
+
+.popup-letter-content {
+  background-color: var(--white);
+  border: 3px dashed var(--pink-pastel);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 70dvh;
+  overflow-y: auto;
+}
+
+.popup-letter-content h2 {
+  color: var(--pink-dark);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.popup-letter-content p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.popup-letter-content h3 {
+  font-family: var(--font-cursive);
+  font-size: 1.6rem;
+  color: var(--hk-red);
+  margin: 8px 0 0 0;
 }
 

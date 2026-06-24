@@ -463,7 +463,7 @@
                   </div>
                   <div class="tv-screen">
                     <div class="video-wrapper">
-                      <video id="birthday-video" class="custom-video" src="video.mp4" playsinline webkit-playsinline>
+                      <video id="birthday-video" class="custom-video" src="7970546729291.mp4" playsinline webkit-playsinline>
                         Trình duyệt của bạn không hỗ trợ thẻ phát video.
                       </video>
                       
@@ -495,22 +495,16 @@
                         <div class="progress-bar-filled" id="video-progress-filled"></div>
                       </div>
                       <button id="video-mute" class="control-btn">🔊</button>
+                      <button id="video-zoom" class="control-btn" title="Thu phóng (Fit/Fill)">🔍 Fit</button>
+                      <button id="video-fullscreen" class="control-btn" title="Toàn màn hình">⛶</button>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <!-- Right: Parchment Letter -->
-              <div class="letter-container-wrapper">
-                <div class="final-letter" id="final-wish-letter">
-                  <div class="final-letter-decor">🌸 🎀 🌸</div>
-                  <h2>Gửi cô gái đặc biệt nhất của anh...</h2>
-                  <p>Mỗi ngày được ở bên em đều là một món quà. Em thắp sáng thế giới của anh theo cách mà anh chưa từng nghĩ là có thể.</p>
-                  <p>Chúc cho tuổi mới của em tràn ngập hạnh phúc, tiếng cười và sự ngọt ngào y như cách em mang lại cho trái tim anh mỗi giây.</p>
-                  <h3>Chúc mừng sinh nhật em! Mãi yêu em. 💖</h3>
-                </div>
 
                 <div class="final-actions">
+                  <button id="read-letter-btn" class="kitty-btn letter-btn">
+                    <span>Đọc Thư Tay Của Anh 💌</span>
+                  </button>
                   <button id="send-heart-btn" class="kitty-btn heart-burst-btn">
                     <span>Gửi Tim Cho Anh!</span>
                     <span class="btn-heart">❤️</span>
@@ -629,6 +623,29 @@
       
       <div class="music-source-toggle">
         <button id="switch-to-synth-btn" class="small-btn">Chuyển về Nhạc Nền Mặc Định 🎶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Letter Popup Modal -->
+  <div class="letter-popup-overlay" id="letter-popup">
+    <div class="letter-popup-card">
+      <div class="hk-ears">
+        <div class="hk-ear-l"></div>
+        <div class="hk-ear-r"></div>
+        <svg class="hk-bow-svg" viewBox="0 0 100 70" fill="none">
+          <path d="M50 40C42 40 28 28 30 16C32 4 44 10 50 22C56 10 68 4 70 16C72 28 58 40 50 40Z" fill="#ff1744" stroke="#2c1a21" stroke-width="3"/>
+          <circle cx="50" cy="30" r="8" fill="#ffd166" stroke="#2c1a21" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <button class="popup-close-btn" id="letter-popup-close">×</button>
+      <div class="popup-title">Thư Tay Của Anh 💌</div>
+      <div class="popup-letter-content">
+        <div class="final-letter-decor">🌸 🎀 🌸</div>
+        <h2>Gửi cô gái đặc biệt nhất của anh...</h2>
+        <p>Mỗi ngày được ở bên em đều là một món quà. Em thắp sáng thế giới của anh theo cách mà anh chưa từng nghĩ là có thể.</p>
+        <p>Chúc cho tuổi mới của em tràn ngập hạnh phúc, tiếng cười và sự ngọt ngào y như cách em mang lại cho trái tim anh mỗi giây.</p>
+        <h3>Chúc mừng sinh nhật em! Mãi yêu em. 💖</h3>
       </div>
     </div>
   </div>
