@@ -455,6 +455,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tl = gsap.timeline({
       onComplete: () => {
         currentPage.classList.remove('active');
+        gsap.set(currentPage, { clearProps: "all" }); // Clear all GSAP inline styles
+        
         nextPage.classList.add('active');
         
         // Intro animation for next page
@@ -487,7 +489,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     gsap.set(nextPage, { display: 'flex', opacity: 0, scale: 0.95 });
     
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      onComplete: () => {
+        gsap.set(nextPage, { clearProps: "transform,scale,opacity" }); // Clear positioning style locks
+      }
+    });
     tl.to(nextPage, {
       opacity: 1,
       scale: 1,
@@ -504,7 +510,8 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         stagger: 0.15,
         duration: 0.8,
-        ease: "back.out(1.4)"
+        ease: "back.out(1.4)",
+        clearProps: "all"
       });
       unlockTab('page-maze');
       addChatMessage("Anh yêu", "Đây là thư chúc mừng sinh nhật anh viết cho em, người yêu của anh! Em nhớ xem cả tờ lịch tháng 6 nữa nhé. 🥰");
@@ -516,7 +523,8 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         stagger: 0.15,
         duration: 0.8,
-        ease: "back.out(1.2)"
+        ease: "back.out(1.2)",
+        clearProps: "all"
       });
       addChatMessage("Anh yêu", "Em có thể dẫn quả bơ 🥑 đến quả dâu tây 🍓 không nào? Kéo em nó dọc theo đường đi nhé! 💕");
     } else if (pageId === 'page-memories') {
@@ -526,19 +534,20 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         stagger: 0.15,
         duration: 0.8,
-        ease: "power2.out"
+        ease: "power2.out",
+        clearProps: "all"
       });
       addChatMessage("Anh yêu", "Nhìn lại những bức ảnh ngọt ngào của chúng mình nè! Chúng mình có thật nhiều kỷ niệm đẹp. Hãy bấm 'Thổi Nến Nào!' khi em đã sẵn sàng nhé! 🍰");
     } else if (pageId === 'page-cake') {
       resetCakeState();
       initCake3DIfNeeded();
       if (window.cake3D_resize) window.cake3D_resize();
-      gsap.from('.cake-3d-viewport', { scale: 0.8, opacity: 0, duration: 0.8, ease: "back.out(1.2)" });
-      gsap.from('.cake-action-bar', { y: 30, opacity: 0, duration: 0.6, delay: 0.3, ease: "power2.out" });
+      gsap.from('.cake-3d-viewport', { scale: 0.8, opacity: 0, duration: 0.8, ease: "back.out(1.2)", clearProps: "all" });
+      gsap.from('.cake-action-bar', { y: 30, opacity: 0, duration: 0.6, delay: 0.3, ease: "power2.out", clearProps: "all" });
       addChatMessage("Anh yêu", "Anh tự tay làm chiếc bánh dâu tây 3D này cho em đó! 🎂 Kéo để xoay bánh, sau đó bấm thắp nến nhé!");
     } else if (pageId === 'page-video') {
-      gsap.from('.video-frame', { scale: 0.8, rotation: -5, opacity: 0, duration: 0.8, ease: "back.out(1.5)" });
-      gsap.from('.final-actions', { y: 30, opacity: 0, duration: 0.8, delay: 0.4, ease: "power2.out" });
+      gsap.from('.video-frame', { scale: 0.8, rotation: -5, opacity: 0, duration: 0.8, ease: "back.out(1.5)", clearProps: "all" });
+      gsap.from('.final-actions', { y: 30, opacity: 0, duration: 0.8, delay: 0.4, ease: "power2.out", clearProps: "all" });
       addChatMessage("Anh yêu", "Đây là video kỷ niệm của tụi mình! Hoặc em có thể bấm 'Chạy Hiệu Ứng Mưa Tim' để tạo cơn mưa tim lãng mạn. Đừng quên gửi tim cho anh nha! 😘");
     }
   }

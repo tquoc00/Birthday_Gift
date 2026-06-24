@@ -2404,9 +2404,14 @@ body {
 @media (max-width: 950px) {
   body {
     padding: 10px;
-    padding-bottom: calc(75px + env(safe-area-inset-bottom, 12px)) !important;
-    height: auto;
-    overflow-y: auto;
+    padding-bottom: calc(90px + env(safe-area-inset-bottom, 15px)) !important;
+    height: auto !important;
+    min-height: 100dvh;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    overflow-y: auto !important;
   }
 
   .bg-decorations {
@@ -2415,72 +2420,189 @@ body {
 
   .stream-dashboard {
     width: 100%;
-    margin: 10px auto;
+    margin: 5px auto;
   }
 
   .dashboard-body {
-    flex-direction: column-reverse; /* Put main content on top, chat on bottom */
+    flex-direction: column-reverse; /* Stack main content on top, chat on bottom */
+    height: auto !important; /* Allow natural height flow */
+    overflow: visible !important; /* Allow natural scrolling */
+    gap: 20px;
   }
 
   .chat-box-frame {
     width: 100%;
-    height: 300px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px; /* Add breathing space for HK ears at the top of the chat box */
   }
 
   .face-cam-frame {
     width: 100%;
-    height: auto;
-    min-height: 500px;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 30px 10px 15px 10px !important;
   }
 
   .face-cam-viewport {
-    height: auto;
-    min-height: 480px;
-    overflow: visible;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
   }
 
   .page {
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 480px;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
     display: none;
-    padding: 15px 10px 70px 10px;
+    padding: 10px 5px 15px 5px !important;
   }
 
   .page.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
   }
 
   .screen-two-columns {
-    flex-direction: column;
-    height: auto;
-    gap: 20px;
+    flex-direction: column !important;
+    height: auto !important;
+    width: 100% !important;
+    gap: 25px !important;
+    align-items: center !important;
   }
 
   .calendar-page-content, .letter-page-content,
   .camera-layout-container, .maze-game-container,
   .memories-collage-page, .scraps-layout-container,
-  .cake-container-wrapper {
-    width: 100%;
-    height: auto;
-    min-height: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
+  .cake-container-wrapper, .video-screen-layout {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
   }
 
-  .video-screen-layout {
-    flex-direction: column;
-    height: auto;
+  /* Make sure all individual cards inside stacked pages are auto height to avoid collapse */
+  .calendar-container,
+  .love-letter-card,
+  .retro-camera-container,
+  .memories-collage,
+  .scraps-polaroid-container,
+  .video-container-wrapper {
+    height: auto !important;
+    min-height: auto !important;
   }
 
-  .video-screen-layout .video-container-wrapper {
-    width: 100%;
+  .love-letter-card {
+    padding: 15px !important;
+    position: relative;
+  }
+
+  /* Prevent absolute overlapping of photos inside love letter */
+  .letter-top-images {
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    margin-bottom: 15px !important;
+    width: 100% !important;
+  }
+
+  .letter-fields {
+    width: 100% !important;
+    margin-top: 5px !important;
+  }
+
+  .letter-body.cursive-text {
+    height: auto !important;
+    overflow-y: visible !important;
+  }
+
+  /* Center calendar */
+  .calendar-container {
+    margin: 0 auto !important;
+  }
+
+  /* Keep next page button at the end of natural scroll flow */
+  .page-next-btn {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin: 20px auto 10px auto !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: fit-content !important;
+    z-index: 50;
+  }
+
+  /* TV screen and controls spacing on mobile */
+  .video-frame {
+    padding: 15px 12px 18px 12px !important;
+  }
+
+  .video-container-wrapper h2 {
+    font-size: 1.25rem !important;
+    margin-bottom: 5px !important;
+    text-align: center !important;
+  }
+
+  .video-controls {
+    padding: 6px 10px !important;
+    gap: 8px !important;
+  }
+
+  .video-controls .control-btn {
+    font-size: 0.85rem !important;
+  }
+
+  /* Final Actions layout fix to prevent button squishing/wrapping bugs */
+  .final-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+  }
+
+  .final-actions button {
+    width: 100% !important;
+    max-width: 280px !important;
+    justify-content: center !important;
+  }
+
+  /* Placeholder video buttons vertical layout */
+  .video-buttons {
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .video-buttons label, .video-buttons button {
+    width: 100% !important;
+    max-width: 240px !important;
+    text-align: center !important;
+  }
+
+  /* Cake 3D view height reset */
+  .cake-3d-viewport {
+    height: 300px !important;
+  }
+
+  /* Maze layout fix */
+  .maze-game-container {
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+
+  .maze-board {
+    width: 260px !important;
+    height: 260px !important;
+    margin: 0 auto !important;
   }
 
   /* Fixed swipeable navigation bar for app-like UX */
@@ -2509,6 +2631,12 @@ body {
 
   .panels-container::-webkit-scrollbar {
     display: none;
+  }
+
+  .panel-tab {
+    padding: 8px 12px !important;
+    font-size: 0.85rem !important;
+    min-width: 110px !important;
   }
 
   /* Prevent iOS Safari keyboard zoom on focus */
